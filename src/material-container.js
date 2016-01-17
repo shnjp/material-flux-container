@@ -27,7 +27,7 @@ export default class Container {
         class ContainerComponent extends Base {
             constructor(props) {
                 super(props);
-                this.state = Base.calculateState(null, props);
+                this.state = Base.calculateState(null, props, this.props.context);
                 // initialize
                 this._StoreRemoveEventListers = [];
             }
@@ -37,7 +37,7 @@ export default class Container {
                     super.componentDidMount();
                 }
 
-                var stores = Base.getStores();
+                var stores = Base.getStores(this.props.context);
 
                 // This tracks when any store has changed and we may need to update.
                 var changed = false;
